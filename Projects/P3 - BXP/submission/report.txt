@@ -1,0 +1,6 @@
+Name: Ethan Dinh
+DUCK ID: edinh
+Names of Classmates from whom I received help: none.
+Help received: Professor Sventek 
+Current State of Submission:
+	Every part of the program was implemented. In its current state, all versions of dtsv? works as intended. When checking for memory via valgrind, all versions displayed 0 bytes definitely leaked and 0 bytes indirectly lost. Furthermore, when sending OneShot requests, the possibly lost and still reachable bytes stayed constant.

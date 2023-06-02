@@ -1,0 +1,12 @@
+OneShot 1
+OneShot 2
+OneShot 3
+OneShot 3
+OneShot 3
+OneShot 10
+Cancel 6
+OneShot 10
+Cancel 7
+Cancel 1
+Cancel 20
+Repeat

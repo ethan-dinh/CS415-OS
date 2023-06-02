@@ -1,0 +1,6 @@
+echo hello world!
+echo wazzup!
+echo my name is Ethan!
+./test_timer 1
+./test_timer 2
+./test_timer 1

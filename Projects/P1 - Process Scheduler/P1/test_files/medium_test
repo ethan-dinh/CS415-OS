@@ -1,0 +1,4 @@
+./test_timer 1
+./test_timer 2
+./test_timer 5
+./test_timer 10

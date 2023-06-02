@@ -1,0 +1,9 @@
+Name: Ethan Dinh
+DUCK ID: edinh
+Names of Classmates from whom I recieved help: none.
+Help recieved: none.
+Current state of submission: the set was implemented a hash table. In its
+current state, the program compiles successfully and when tested using longtest
+and stringtest, the program successfully passes all tests. It was also checked
+for memory leaks both using the provided tests and an additional test in which
+more than 100 unique items were added to the set.

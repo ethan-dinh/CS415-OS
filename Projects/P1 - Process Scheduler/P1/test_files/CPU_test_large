@@ -1,0 +1,9 @@
+./cpubound -s 15
+./cpubound -s 60
+./cpubound -s 30
+./cpubound -s 15
+./cpubound -s 60
+./cpubound -s 30
+./cpubound -s 15
+./cpubound -s 60
+./cpubound -s 30

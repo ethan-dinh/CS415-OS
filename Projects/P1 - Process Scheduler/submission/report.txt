@@ -1,0 +1,9 @@
+Name: Ethan Dinh
+DUCK ID: edinh
+Names of Classmates from whom I received help: none.
+Help received: Textbook Reading (CH 8)
+Current State of Submission:
+Every part of the project was implemented. In its current state, every program compiles successfully without any warnings or errors. When tested using self-written tests, the program performed as desired. Furthermore, parts 1, 2, and 3 were examined using top and functioned successfully. Each program was also tested with workload.txt files containing invalid program calls. There were no memory leaks and the error was reported. However, since I implemented a constantly refreshing display for part 4, it is quite difficult to decipher the output. That being said, I disabled the display prints and check with valgrind to ensure there were no memory leaks regardless if the workload contained invalid program calls. Extensive tests were also conducted to ensure that the scheduler in part 2 and 3 were functioning as intended using both IO_BOUND and CPU_BOUND.
+
+WARNING:
+I was unable to implement the display portion using a separate program. As such, there are two valgrind outputs: one for the display child and one for the parent. Lastly, I implemented a warning for terminals in which the width is larger than the maximum buffer I used to refresh the display.

@@ -1,0 +1,10 @@
+Makefile
+hashset.h
+llistset.h
+set.h
+sort.h
+sort.c
+longtest.c
+stringtest.c
+hashset.c
+llistset.c
