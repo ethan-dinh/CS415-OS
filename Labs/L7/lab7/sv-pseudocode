@@ -1,0 +1,10 @@
+bxp_init(PORT-KNOWN-BY-CLIENT, 1)
+bxps = bxp_offer(SERVICE-NAME-KNOWN-BY-CLIENT)
+loop
+    q_len = bxp_query(bxps, &endpoint, query, sizeof query)
+    if (q_len <= 0)
+        error
+    else
+        parse query
+        perform the query generating the response
+        bxp_response(bxps, &endpoint, response, strlen(response)+1)

@@ -1,0 +1,6 @@
+more /proc/pid/cmdline
+more /proc/pid/stat
+more /proc/pid/status
+more /proc/pid/io
+more /proc/pid/maps
+ls -l /proc/pid/exe

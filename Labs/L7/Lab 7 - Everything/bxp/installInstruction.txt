@@ -1,0 +1,7 @@
+P3BXP-INTEL.tgz and P3BXP-ARM.tgz are available on Canvas. You should download the
+archive appropriate to your architecture; extract the contents of the archive - it will create a bxp
+directory in your current directory when you invoke tar. cd into bxp, then issue the following
+three commands to bash:
+$ sudo make installheaders
+$ sudo make installlibrary
+$ sudo make installmanpages

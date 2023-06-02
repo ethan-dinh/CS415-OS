@@ -1,0 +1,12 @@
+bxp_init(PORT-KNOWN-BY-CLIENT, 1)
+bxps = bxp_offer(SERVICE-NAME-KNOWN-BY-CLIENT)
+loop
+    q_len = bxp_query(bxps, &endpoint, query, sizeof query)
+    if (q_len <= 0)
+        error
+    else
+        parse query into separate words/tokens
+        bxpc = bxp_connect(ipaddr, port, service, 1, 1)
+        bxp_call(bxpc, other information, length of OI, resp, sizeof resp, &resplen)
+        bxp_disconnect(bxpc)
+        bxp_response(bxps, &endpoint, response, strlen(response)+1)

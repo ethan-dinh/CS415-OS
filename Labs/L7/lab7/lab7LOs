@@ -1,0 +1,8 @@
+Learning objectives for lab7 are:
+1. build simple client and server using BXP
+2. build simple callbackclient and callbackserver using BXP
+3. work through pseudocode files first
+4. then show how actual code follows the pseudocode exactly.
+5. build simple client and server first
+6. then can discuss changes to simple client and server to generate callback
+   versions.

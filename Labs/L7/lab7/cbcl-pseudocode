@@ -1,0 +1,21 @@
+serviceFunction(void *args)
+    bxps = (BXPService)args
+    loop
+        qlen = bxp_query(bxps, &endpoint, notification, sizeof notification)
+        bxp_response(bxps, &endpoint, "1", 2);
+        do something with the notification
+
+main
+    bxp_init(0, 1)
+    bxp_details(ipaddr, &myPort)
+    bxps = bxp_offer(SERVICE)
+    bxpc = bxp_connect(host, SERVERS-PORT, service, 1, 1)
+    pthread_create(&threadId, NULL, serviceFunction, (void *)bxps)
+    loop
+        embed ipaddr, myPort, SERVICE, additional information into request
+        bxp_call(bxpc, request, reqlen, response, sizeof response, &resplen)
+        if (response[0] == '0')
+            error
+        else
+            success
+    bxp_disconnect(bxpc)

@@ -1,0 +1,9 @@
+bxp_init(0, 1)
+bxpc = bxp_connect(host, SERVERS-PORT, service, 1, 1)
+loop
+    bxp_call(bxpc, request, reqlen, response, sizeof response, &resplen)
+    if (response[0] == '0')
+        error
+    else
+        success
+bxp_disconnect(bxpc)
