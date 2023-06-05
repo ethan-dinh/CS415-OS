@@ -2,7 +2,7 @@ CFLAGS=-W -Wall -I/usr/local/include
 LDFLAGS=-L/usr/local/lib
 LIBRARIES=-lADTs -lpthread
 PROGS=test mthtest ttest
-WHICHSOURCE=strheapbase
+WHICHSOURCE=strheap
 
 all: $(PROGS)
 
