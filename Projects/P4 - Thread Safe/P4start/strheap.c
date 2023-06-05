@@ -20,18 +20,18 @@
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 
 /* Define Structs */
-typedef struct StringHeap {
+typedef struct stringHeap {
     char *address;
     int refCount;
 } StringHeap;
 
 /* Global Bucket for Storing String Pointers */
-static const CSKMap *map = NULL;
+const CSKMap *map = NULL;
 
 /* At Exit Function */
 void cleanup() {
     if (map != NULL) map -> destroy(map);
-}
+} 
 
 // atexit(cleanup);
 
@@ -56,6 +56,9 @@ char *str_malloc(char *string) {
     // Lock the thread
     pthread_mutex_lock(&lock);
 
+    printf("%p\n", (void *)map);
+    printf("String: %s\n", string);
+
     // Check if the map contains the string
     if (map -> containsKey(map, string)) {
         StringHeap *sh; 
@@ -72,8 +75,6 @@ char *str_malloc(char *string) {
         // Insert the StringHeap into the map
         map -> put(map, string, &sh);
         pthread_mutex_unlock(&lock);
-
-        printf("ADDRESS: %s\n", sh->address);
         return sh -> address;
     }
 }
