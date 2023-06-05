@@ -10,6 +10,7 @@
 #include <pthread.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include "ADTs/hashcskmap.h"
 
 /* Definitions */
@@ -25,7 +26,7 @@ typedef struct StringHeap {
 } StringHeap;
 
 /* Global Bucket for Storing String Pointers */
-static CSKMap *map = NULL;
+static const CSKMap *map = NULL;
 
 /* At Exit Function */
 void cleanup() {
@@ -70,8 +71,9 @@ char *str_malloc(char *string) {
 
         // Insert the StringHeap into the map
         map -> put(map, string, &sh);
-
         pthread_mutex_unlock(&lock);
+
+        printf("ADDRESS: %s\n", sh->address);
         return sh -> address;
     }
 }
@@ -91,7 +93,7 @@ bool str_free(char *string) {
         StringHeap *sh;
         map -> get(map, string, (void **) &sh);
         sh->refCount--;
-
+        
         // Free if the refCount is 0
         if (sh->refCount == 0) map -> remove(map, string);
         status = true;
