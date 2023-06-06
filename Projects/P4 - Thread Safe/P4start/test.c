@@ -18,11 +18,11 @@ int main(int argc, char *argv[]) {
     }
     for ( ; i < argc; i++) {
 	int k;
-	for (k = 0; k < TOTAL; k++)
-            ptrs[k] = str_malloc(argv[i]);
-	if (ifdel)
+	for (k = 0; k < TOTAL; k++) {
+        ptrs[k] = str_malloc(argv[i]);
+    } if (ifdel)
 	    for (k = 0; k < TOTAL; k++)
-                str_free(ptrs[k]);
+            str_free(ptrs[k]);
     }
     return EXIT_SUCCESS;
 }

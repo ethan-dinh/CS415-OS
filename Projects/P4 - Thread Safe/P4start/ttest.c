@@ -28,7 +28,7 @@ int main(UNUSED int argc, UNUSED char *argv[]) {
         Row *r;
 	t->retrieve(t, i, &r);
 	r->csvline(r, buf);
-        printf("%s\n", buf);
+        // printf("%s\n", buf);
     }
     t->destroy(t);
     return EXIT_SUCCESS;
