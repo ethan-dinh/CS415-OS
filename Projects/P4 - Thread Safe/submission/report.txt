@@ -1,0 +1,6 @@
+Name: Ethan Dinh
+DUCK ID: edinh
+Names of Classmates from whom I received help: none.
+Help received: None :) 
+Current State of Submission:
+        Every part of the program was implemented. In its current state, both str_malloc and str_free functions properly and are both thread safe. When tested for memory leaks via valgrind, all test programs returned 0 bytes in use at exit. Further there are no warnings or errors during compilation and valgrind execution.
