@@ -5,19 +5,20 @@
  * Date: Jun 4, 2023
  */
 
+/* Importing Libraries */
 #include <stdlib.h>
-#include "strheap.h"
 #include <pthread.h>
 #include <string.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include "ADTs/hashcskmap.h"
+#include "strheap.h"
 
-/* Definitions */
 #define CAPACITY 128
 
-/* Global Locks*/
+/* Global Lock & Map */
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
+const CSKMap *map = NULL;
 
 /* Define Structs */
 typedef struct stringHeap {
@@ -25,15 +26,11 @@ typedef struct stringHeap {
     int refCount;
 } StringHeap;
 
-/* Global Bucket for Storing String Pointers */
-const CSKMap *map = NULL;
-
 /* At Exit Function */
 void cleanup() {
     if (map != NULL) map -> destroy(map);
+	map = NULL;
 } 
-
-// atexit(cleanup);
 
 void freeValue(void *stringHeap) {
     StringHeap *sh = stringHeap;
@@ -49,34 +46,29 @@ void freeValue(void *stringHeap) {
 
 char *str_malloc(char *string) {
     if (map == NULL) {
-        if ((map = HashCSKMap(CAPACITY, 5.0, freeValue)) == NULL)
-            return NULL;
+        atexit(cleanup);
+        if ((map = HashCSKMap(CAPACITY, 5.0, freeValue)) == NULL) 
+			return NULL;
     }
 
     // Lock the thread
     pthread_mutex_lock(&lock);
 
-    printf("%p\n", (void *)map);
-    printf("String: %s\n", string);
-
     // Check if the map contains the string
-    if (map -> containsKey(map, string)) {
-        StringHeap *sh; 
-        map -> get(map, string, (void **) &sh);
+	StringHeap *sh = NULL;
+    if (map -> get(map, string, (void **) &sh))
         sh->refCount++;
-        pthread_mutex_unlock(&lock);
-        return sh->address;
-    } else {
+    else {
         // Make a new StringHeap
-        StringHeap *sh = (StringHeap *) malloc(sizeof(StringHeap));
+        sh = (StringHeap *) malloc(sizeof(StringHeap));
         sh -> address = strdup(string);
         sh -> refCount = 1;
 
         // Insert the StringHeap into the map
-        map -> put(map, string, &sh);
-        pthread_mutex_unlock(&lock);
-        return sh -> address;
-    }
+        map -> put(map, string, (void *)sh);
+    } pthread_mutex_unlock(&lock);
+	
+	return sh->address;
 }
 
 /*  
@@ -90,16 +82,14 @@ bool str_free(char *string) {
     pthread_mutex_lock(&lock);
 
     // Check if the map contains the string
-    if ((map -> containsKey(map, string)) && (map != NULL)) {
-        StringHeap *sh;
-        map -> get(map, string, (void **) &sh);
+	StringHeap *sh;
+    if ((map != NULL) && (map -> get(map, string, (void **) &sh))) {
         sh->refCount--;
         
         // Free if the refCount is 0
         if (sh->refCount == 0) map -> remove(map, string);
         status = true;
     } pthread_mutex_unlock(&lock);
-
     return status;
 }
 
